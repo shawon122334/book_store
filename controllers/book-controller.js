@@ -48,10 +48,22 @@ const updateBook = async(req,res)=>{
         })
     }
 }
-
+const deleteBook = async(req,res)=>{
+    const id = req.params.id 
+    try{
+        const book = await BookDb.findByIdAndDelete(id) 
+        return res.status(200).send('Deleted Successfully')
+    }
+    catch(err){
+        return req.status(500).send({
+            error : err 
+        })
+    }
+}
 module.exports = {
     getBook,
     addBook,
     getSingleBook,
-    updateBook
+    updateBook,
+    deleteBook
 }

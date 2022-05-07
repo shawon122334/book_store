@@ -1,5 +1,5 @@
 const bookRouter = require('express').Router()
-const {getBook,addBook,getSingleBook,updateBook} = require('../controllers/book-controller')
+const {getBook,addBook,getSingleBook,updateBook,deleteBook} = require('../controllers/book-controller')
 
 bookRouter.route('/')
     .get(getBook)
@@ -7,4 +7,5 @@ bookRouter.route('/')
 bookRouter.route('/:id')
     .get(getSingleBook)
     .put(updateBook)
+    .delete(deleteBook)
 module.exports = bookRouter
