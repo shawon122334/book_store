@@ -20,6 +20,10 @@ const bookSchema = Schema({
     available : {
         type : Boolean,
         required : true
+    },
+    image:{
+        type : String,
+        required : true
     }
 })
 const BookDb = model('BookDb',bookSchema)
