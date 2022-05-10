@@ -1,9 +1,32 @@
-import React from 'react'
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import Book from "./Book";
+import './Book.css';
+
+const url = "http://localhost:5000/books";
+const fetchHandler = async () => {
+  return await axios.get(url).then((res) => res.data);
+};
 
 const Books = () => {
-  return (
-    <div>All Books Are Here</div>
-  )
-}
+  const [books, setBooks] = useState();
 
-export default Books
+  useEffect(() => {
+    fetchHandler().then((data) => setBooks(data));
+  }, []);
+  console.log(books);
+  return (
+    <div>
+      <ul>
+        {books &&
+          books.map((book, i) => (
+            <li key={i}>
+              <Book book={book}></Book>
+            </li>
+          ))}
+      </ul>
+    </div>
+  );
+};
+
+export default Books;
